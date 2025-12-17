@@ -51,22 +51,22 @@ export function Footer() {
             <h4 className="text-red-600 font-bold mb-4">Empresa</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-red-600 transition">
+                <a href="https://jedis.com.br/" target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition">
                   Sobre
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600 transition">
+                <a href="https://jedis.com.br/" target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition">
                   Blog
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600 transition">
+                <a href="https://jedis.com.br/" target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition">
                   Carreira
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600 transition">
+                <a href="https://wa.me/553198819071?text=Ol%C3%A1%21%20Tudo%20bem%3F%20Gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20ATS%20RHapido.%20Cheguei%20at%C3%A9%20voc%C3%AAs%20pela%20landing%20page%20do%20RHapido%20e%20quero%20entender%20melhor%20como%20a%20solu%C3%A7%C3%A3o%20pode%20ajudar%20nos%20processos%20de%20recrutamento.%20Obrigado%21" target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition">
                   Contato
                 </a>
               </li>
@@ -77,22 +77,22 @@ export function Footer() {
             <h4 className="text-red-600 font-bold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="hover:text-red-600 transition">
+                <a href="/privacidade" className="hover:text-red-600 transition">
                   Privacidade
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600 transition">
+                <a href="/termos" className="hover:text-red-600 transition">
                   Termos
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600 transition">
+                <a href="/lgpd" className="hover:text-red-600 transition">
                   LGPD
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-red-600 transition">
+                <a href="/compliance" className="hover:text-red-600 transition">
                   Compliance
                 </a>
               </li>
@@ -104,10 +104,10 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm">&copy; 2025 RHapido. Todos os direitos reservados.</p>
             <div className="flex gap-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-700 hover:text-red-600 transition">
+              <a href="https://www.linkedin.com/company/jedis/posts/?feedView=all" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-600 transition">
                 LinkedIn
               </a>
-              <a href="#" className="text-gray-700 hover:text-red-600 transition">
+              <a href="https://instagram.com/_jedis" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-red-600 transition">
                 Instagram
               </a>
             </div>

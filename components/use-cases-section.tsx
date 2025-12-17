@@ -23,7 +23,7 @@ export function UseCasesSection() {
       title: "Empresas Mid-Market",
       description:
         "Estruture processos de recrutamento profissionais com governança e controle. Dashboards e relatórios para tomada de decisão.",
-      benefits: ["Processos estruturados", "Colaboração entre times", "Métricas e KPIs detalhados"],
+      benefits: ["Processos estruturados", "Colaboração entre times", "Métricas detalhadas"],
     },
     {
       icon: Factory,

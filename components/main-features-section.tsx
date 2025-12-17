@@ -29,24 +29,6 @@ export function MainFeaturesSection() {
         "Acompanhe cada candidato através das etapas do processo: triagem, entrevistas, testes e aprovação final.",
       icon: CheckCircle,
     },
-    {
-      title: "Avaliações e Feedbacks",
-      description:
-        "Registre avaliações estruturadas com scorecards personalizados. Colabore com o time de forma organizada e transparente.",
-      icon: FileText,
-    },
-    {
-      title: "Relatórios e Métricas",
-      description:
-        "Acompanhe KPIs do recrutamento: tempo médio de contratação, taxa de conversão, origem dos candidatos e muito mais.",
-      icon: BarChart3,
-    },
-    {
-      title: "Automação de Processos",
-      description:
-        "Configure fluxos automatizados para triagem, envio de e-mails, agendamento de entrevistas e notificações.",
-      icon: Zap,
-    },
   ]
 
   return (

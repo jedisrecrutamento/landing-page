@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Briefcase, FileText, UserCheck, BarChart3 } from "lucide-react"
+import { Briefcase, FileText, Mail, BarChart3 } from "lucide-react"
 
 export function PlatformShowcase() {
   const [isVisible, setIsVisible] = useState(false)
@@ -24,10 +24,10 @@ export function PlatformShowcase() {
       icon: FileText,
     },
     {
-      title: "Avaliações Estruturadas",
+      title: "Comunicação com Candidatos",
       description:
-        "Padronize a avaliação de candidatos com critérios claros. Garanta um processo justo e comparável entre todos os participantes.",
-      icon: UserCheck,
+        "Mantenha contato direto com os candidatos através de e-mails. Agilize a comunicação e melhore a experiência do processo seletivo.",
+      icon: Mail,
     },
     {
       title: "Relatórios e Métricas",

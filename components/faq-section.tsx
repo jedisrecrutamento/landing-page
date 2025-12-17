@@ -10,22 +10,17 @@ export function FAQSection() {
     {
       question: "Como funciona a implementação do RHapido?",
       answer:
-        "Sabemos que a implementação de novas ferramentas de recrutamento e seleção pode ser complexa e trabalhosa; por isso, além de disponibilizarmos todos os documentos e suporte necessário, dedicamos um time completo para auxiliá-la nesse processo.",
+        "Temos um time completo dedicado que faz a implementação completa do RHapido na sua empresa. Você não precisa se preocupar com nada - cuidamos de todo o processo para você.",
     },
     {
       question: "Como funciona o suporte?",
       answer:
-        "Nos orgulhamos de ter um dos melhores atendimentos do mercado; nossa média de tempo para a primeira resposta é abaixo de 10 minutos! Caso tenha alguma dúvida, basta acessar o chat dentro da própria plataforma, que estamos prontos para atendê-lo(a).",
-    },
-    {
-      question: "O RHapido importa os dados do ATS antigo?",
-      answer:
-        "Sim! Sabemos a importância dos dados e estamos aqui para te ajudar em todo o processo de importação do seu software de recrutamento e seleção antigo.",
+        "Nos orgulhamos de ter um dos melhores atendimentos do mercado; nossa média de tempo para a primeira resposta é abaixo de 10 minutos! Caso tenha alguma dúvida, entre em contato conosco através do e-mail rhapido@jedis.com, que estamos prontos para atendê-lo(a).",
     },
     {
       question: "Como funciona a extensão do RHapido no Chrome?",
       answer:
-        "Essa funcionalidade é uma extensão do Chrome, que fica conectada ao seu LinkedIn, independentemente de ser uma conta paga ou gratuita. Solicite uma demo e veja como funciona, é como mágica.",
+        "Essa funcionalidade é uma extensão do Chrome, que fica conectada ao seu LinkedIn, independentemente de ser uma conta paga ou gratuita. Solicite uma demonstração e veja como funciona, é como mágica.",
     },
     {
       question: "Quais são os planos?",
