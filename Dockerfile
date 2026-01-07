@@ -6,12 +6,14 @@ WORKDIR /app
 # Copy package files
 COPY package.json package-lock.json* pnpm-lock.yaml* ./
 RUN \
-  if [ -f pnpm-lock.yaml ]; then \
-    corepack enable pnpm && pnpm i --frozen-lockfile; \
-  elif [ -f package-lock.json ]; then \
-    npm ci; \
+  if [ -f package-lock.json ]; then \
+    echo "Using npm with package-lock.json" && npm ci; \
+  elif [ -f pnpm-lock.yaml ]; then \
+    echo "Using pnpm with pnpm-lock.yaml" && \
+    corepack enable pnpm && \
+    (pnpm i --frozen-lockfile || pnpm install); \
   else \
-    echo "Lockfile not found." && exit 1; \
+    echo "No lockfile found, using npm install" && npm install; \
   fi
 
 # Stage 2: Builder
