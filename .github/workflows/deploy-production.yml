@@ -86,7 +86,7 @@ jobs:
           curl -H "Content-Type: application/json" \
             -d '{
               "embeds": [{
-                "title": "🚀 Deploy Produção Concluído",
+                "title": "🚀 Deploy da Landing Page em Produção Concluído",
                 "description": "Deploy realizado com sucesso para o ambiente de produção",
                 "color": 3066993,
                 "fields": [
@@ -117,7 +117,7 @@ jobs:
           curl -H "Content-Type: application/json" \
             -d '{
               "embeds": [{
-                "title": "❌ Deploy Produção Falhou",
+                "title": "❌ Deploy em Produção da Landing Page Falhou",
                 "description": "O deploy para produção falhou. Verifique os logs do workflow.",
                 "color": 15158332,
                 "fields": [
