@@ -1,0 +1,148 @@
+name: Deploy Production to VM
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  deploy_production:
+    name: Deploy Production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Validate secrets
+        run: |
+          if [ -z "${{ secrets.PROD_VM_HOST }}" ]; then
+            echo "❌ ERRO: PROD_VM_HOST não está definido nos secrets do GitHub"
+            exit 1
+          fi
+          if [ -z "${{ secrets.PROD_VM_USER }}" ]; then
+            echo "❌ ERRO: PROD_VM_USER não está definido nos secrets do GitHub"
+            exit 1
+          fi
+          if [ -z "${{ secrets.PROD_VM_SSH_KEY }}" ]; then
+            echo "❌ ERRO: PROD_VM_SSH_KEY não está definido nos secrets do GitHub"
+            exit 1
+          fi
+          echo "✅ Todos os secrets estão configurados"
+
+      - name: Deploy to Production via SSH
+        uses: appleboy/ssh-action@master
+        timeout-minutes: 15
+        with:
+          host: ${{ secrets.PROD_VM_HOST }}
+          username: ${{ secrets.PROD_VM_USER }}
+          key: ${{ secrets.PROD_VM_SSH_KEY }}
+          port: 22
+          script: |
+            set -e
+
+            echo "🚀 Iniciando deploy para PRODUÇÃO..."
+
+            ENVIRONMENT="production"
+            BRANCH_NAME="main"
+            COMPOSE_FILE="docker-compose.yml"
+
+            # Ir para diretório do projeto na VM de produção
+            cd /home/${{ secrets.PROD_VM_USER }}/landing-page
+
+            echo "📥 Atualizando código..."
+            git fetch origin
+            git reset --hard "origin/${BRANCH_NAME}"
+
+            echo "⏹️  Parando serviços antigos..."
+            docker compose -f "$COMPOSE_FILE" down || true
+
+            echo "🧹 Limpando cache do Docker (preservando volumes)..."
+            docker system prune -af || true
+            docker builder prune -af || true
+
+            echo "🔨 Compilando imagens..."
+            docker compose -f "$COMPOSE_FILE" build
+
+            echo "🚀 Iniciando serviços..."
+            docker compose -f "$COMPOSE_FILE" up -d
+
+            sleep 5
+
+            echo "✅ Status dos serviços:"
+            docker compose -f "$COMPOSE_FILE" ps
+
+            echo "🏥 Verificando saúde da aplicação..."
+            curl -f http://localhost/health || echo "⚠️  Nginx ainda iniciando..."
+            curl -f http://localhost || echo "⚠️  Aplicação ainda iniciando..."
+
+            echo "✅ Deploy realizado com sucesso para $ENVIRONMENT!"
+
+      - name: Notify Discord - Success
+        if: success()
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d '{
+              "embeds": [{
+                "title": "🚀 Deploy Produção Concluído",
+                "description": "Deploy realizado com sucesso para o ambiente de produção",
+                "color": 3066993,
+                "fields": [
+                  {
+                    "name": "Branch",
+                    "value": "`main`",
+                    "inline": true
+                  },
+                  {
+                    "name": "Commit",
+                    "value": "`${{ github.sha }}`",
+                    "inline": true
+                  },
+                  {
+                    "name": "Autor",
+                    "value": "${{ github.actor }}",
+                    "inline": true
+                  }
+                ],
+                "timestamp": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"
+              }]
+            }' \
+            ${{ secrets.DISCORD_WEBHOOK_URL }} || echo "⚠️  Falha ao notificar Discord (webhook não configurado)"
+
+      - name: Notify Discord - Failure
+        if: failure()
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d '{
+              "embeds": [{
+                "title": "❌ Deploy Produção Falhou",
+                "description": "O deploy para produção falhou. Verifique os logs do workflow.",
+                "color": 15158332,
+                "fields": [
+                  {
+                    "name": "Branch",
+                    "value": "`main`",
+                    "inline": true
+                  },
+                  {
+                    "name": "Commit",
+                    "value": "`${{ github.sha }}`",
+                    "inline": true
+                  },
+                  {
+                    "name": "Autor",
+                    "value": "${{ github.actor }}",
+                    "inline": true
+                  },
+                  {
+                    "name": "Workflow",
+                    "value": "[Ver logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})",
+                    "inline": false
+                  }
+                ],
+                "timestamp": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'"
+              }]
+            }' \
+            ${{ secrets.DISCORD_WEBHOOK_URL }} || echo "⚠️  Falha ao notificar Discord (webhook não configurado)"

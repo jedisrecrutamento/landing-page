@@ -116,11 +116,11 @@ landing-page/
 
 ## 🌐 Deploy
 
-O projeto está configurado para deploy na Vercel. Para fazer deploy:
+O projeto está configurado para deploy via Docker e GitHub Actions. Para mais informações sobre deploy, consulte a [documentação de Docker e Deploy](./docs/DOCKER.md).
 
-1. Conecte seu repositório à Vercel
-2. Configure as variáveis de ambiente (se necessário)
-3. Deploy automático será feito a cada push na branch principal
+### Deploy Automatizado
+
+O projeto inclui um workflow do GitHub Actions que faz deploy automático para produção quando há push na branch `main`. Veja mais detalhes em [docs/DOCKER.md](./docs/DOCKER.md#deploy-automatizado-via-github-actions).
 
 ## 📧 Contato
 
