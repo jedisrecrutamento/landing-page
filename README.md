@@ -106,6 +106,7 @@ landing-page/
 - **Tailwind CSS** - Estilização
 - **Radix UI** - Componentes acessíveis
 - **Lucide React** - Ícones
+- **Docker** - Deploy
 
 ## 📝 Scripts Disponíveis
 
