@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rhapido-landingpage
+  labels:
+    app: rhapido-landingpage
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - rhapido.com.br
+      secretName: cloudflare-origin-tls
+  rules:
+    - host: rhapido.com.br
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rhapido-landingpage
+                port:
+                  number: 3000

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rhapido-landingpage
+  labels:
+    app: rhapido-landingpage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rhapido-landingpage
+  template:
+    metadata:
+      labels:
+        app: rhapido-landingpage
+    spec:
+      containers:
+        - name: landingpage
+          image: ghcr.io/jedisrecrutamento/rhapido-landingpage:latest
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: NODE_ENV
+              value: production
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

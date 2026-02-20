@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rhapido-landingpage
+  labels:
+    app.kubernetes.io/name: rhapido-landingpage
+    app.kubernetes.io/part-of: rhapido
