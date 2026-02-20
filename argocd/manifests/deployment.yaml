@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rhapido-landingpage
+  namespace: rhapido-landingpage
   labels:
     app: rhapido-landingpage
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: rhapido-landingpage
@@ -14,15 +15,18 @@ spec:
       labels:
         app: rhapido-landingpage
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
-        - name: landingpage
+        - name: rhapido-landingpage
           image: ghcr.io/jedisrecrutamento/rhapido-landingpage:latest
+          imagePullPolicy: Always
           ports:
-            - containerPort: 3000
-              name: http
+            - name: http
+              containerPort: 3000
           env:
             - name: NODE_ENV
-              value: production
+              value: "production"
           resources:
             requests:
               memory: "256Mi"
